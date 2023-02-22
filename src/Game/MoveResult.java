@@ -1,0 +1,19 @@
+package Game;
+
+public enum MoveResult {
+
+    VALID,
+    INVALID,
+    INVALID_STRING,
+    INVALID_NO_PIECE,
+    INVALID_WRONG_COLOR,
+    INVALID_OUT_OF_BOUNDS,
+    INVALID_CHECKED,
+    CHECK,
+    CHECKMATE,
+    STALEMATE,
+    PROMOTION,
+    NO_PROMOTION,
+    INCORRECT_PROMOTION,
+    GAME_START;
+}
