@@ -6,7 +6,6 @@ import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
 import Game.Pieces.PieceInfo.PieceTypeColor;
 import Game.Position;
-import org.testng.annotations.Ignore;
 
 import java.util.*;
 
