@@ -1,9 +1,12 @@
 package Tests;
 
-import Game.Board;
-import Game.Chessboard;
+import Game.GameRules.ChessRules;
+import Game.GameRules.ModernChessRules;
 import Game.MoveResult;
-import Game.Pieces.*;
+import Game.Pieces.King;
+import Game.Pieces.Knight;
+import Game.Pieces.Pawn;
+import Game.Pieces.Piece;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
 import Game.Pieces.PieceInfo.PieceTypeColor;
@@ -11,8 +14,8 @@ import Game.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KnightTest {
 /* Initial board for test:
@@ -32,43 +35,43 @@ public class KnightTest {
     more pawns added based on the test done at positions marked X
      */
 
-    Board testBoard, testBoardMoveOver;
+    ChessRules testBoard, testBoardMoveOver;
 
 
     @BeforeEach
     void setUp() {
-        Map<Position, Piece> board = new HashMap<>();
+        List<Piece> board = new ArrayList<>();
 
-        board.put(new Position(1, 2), new Knight(PieceColor.WHITE, new Position(1, 2)));
-        board.put(new Position(1, 7), new Knight(PieceColor.WHITE, new Position(1, 7)));
-        board.put(new Position(3, 6), new Knight(PieceColor.WHITE, new Position(3, 6)));
-        board.put(new Position(6, 8), new Knight(PieceColor.WHITE, new Position(6, 8)));
+        board.add(new Knight(PieceColor.WHITE, new Position(1, 2)));
+        board.add(new Knight(PieceColor.WHITE, new Position(1, 7)));
+        board.add(new Knight(PieceColor.WHITE, new Position(3, 6)));
+        board.add(new Knight(PieceColor.WHITE, new Position(6, 8)));
 
-        board.put(new Position(8, 2), new Knight(PieceColor.BLACK, new Position(8, 2)));
-        board.put(new Position(8, 7), new Knight(PieceColor.BLACK, new Position(8, 7)));
-        board.put(new Position(6, 6), new Knight(PieceColor.BLACK, new Position(6, 6)));
-        board.put(new Position(3, 8), new Knight(PieceColor.BLACK, new Position(3, 8)));
+        board.add(new Knight(PieceColor.BLACK, new Position(8, 2)));
+        board.add(new Knight(PieceColor.BLACK, new Position(8, 7)));
+        board.add(new Knight(PieceColor.BLACK, new Position(6, 6)));
+        board.add(new Knight(PieceColor.BLACK, new Position(3, 8)));
 
-        board.put(new Position(1, 5), new King(PieceColor.WHITE, new Position(1, 5)));
-        board.put(new Position(8, 5), new King(PieceColor.BLACK, new Position(8, 5)));
+        board.add(new King(PieceColor.WHITE, new Position(1, 5)));
+        board.add(new King(PieceColor.BLACK, new Position(8, 5)));
 
-        testBoard = new Chessboard(board);
+        testBoard = new ModernChessRules(board);
 
-        board.put(new Position(2, 1), new Pawn(PieceColor.WHITE, new Position(2, 1)));
-        board.put(new Position(2, 2), new Pawn(PieceColor.WHITE, new Position(2, 2)));
-        board.put(new Position(2, 3), new Pawn(PieceColor.WHITE, new Position(2, 3)));
-        board.put(new Position(2, 6), new Pawn(PieceColor.WHITE, new Position(2, 6)));
-        board.put(new Position(2, 7), new Pawn(PieceColor.WHITE, new Position(2, 7)));
-        board.put(new Position(2, 8), new Pawn(PieceColor.WHITE, new Position(2, 8)));
+        board.add(new Pawn(PieceColor.WHITE, new Position(2, 1)));
+        board.add(new Pawn(PieceColor.WHITE, new Position(2, 2)));
+        board.add(new Pawn(PieceColor.WHITE, new Position(2, 3)));
+        board.add(new Pawn(PieceColor.WHITE, new Position(2, 6)));
+        board.add(new Pawn(PieceColor.WHITE, new Position(2, 7)));
+        board.add(new Pawn(PieceColor.WHITE, new Position(2, 8)));
 
-        board.put(new Position(7, 1), new Pawn(PieceColor.BLACK, new Position(7, 1)));
-        board.put(new Position(7, 2), new Pawn(PieceColor.BLACK, new Position(7, 2)));
-        board.put(new Position(7, 3), new Pawn(PieceColor.BLACK, new Position(7, 3)));
-        board.put(new Position(7, 6), new Pawn(PieceColor.BLACK, new Position(7, 6)));
-        board.put(new Position(7, 7), new Pawn(PieceColor.BLACK, new Position(7, 7)));
-        board.put(new Position(7, 8), new Pawn(PieceColor.BLACK, new Position(7, 8)));
+        board.add(new Pawn(PieceColor.BLACK, new Position(7, 1)));
+        board.add(new Pawn(PieceColor.BLACK, new Position(7, 2)));
+        board.add(new Pawn(PieceColor.BLACK, new Position(7, 3)));
+        board.add(new Pawn(PieceColor.BLACK, new Position(7, 6)));
+        board.add(new Pawn(PieceColor.BLACK, new Position(7, 7)));
+        board.add(new Pawn(PieceColor.BLACK, new Position(7, 8)));
 
-        testBoardMoveOver = new Chessboard(board);
+        testBoardMoveOver = new ModernChessRules(board);
     }
 
     @Test

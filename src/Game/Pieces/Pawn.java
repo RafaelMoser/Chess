@@ -1,16 +1,15 @@
 package Game.Pieces;
 
+import Game.GameRules.ChessRules;
 import Game.Direction;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
 import Game.Position;
-import Game.Board;
 
 
 public class Pawn extends GenericPiece {
 
-    private boolean hasMoved;
-    private boolean enPassant;
+    private boolean hasMoved, enPassant;
 
     public Pawn(PieceColor color, Position pos) {
         super(color, PieceType.PAWN, pos);
@@ -19,7 +18,7 @@ public class Pawn extends GenericPiece {
     }
 
     @Override
-    public boolean isValidMove(Board board, Position to, boolean ignorePieceOnPosTo) {
+    public boolean isValidMove(ChessRules board, Position to, boolean ignorePieceOnPosTo) {
         if (currentPos.equals(to)) {
             return false;
         }
@@ -47,7 +46,7 @@ public class Pawn extends GenericPiece {
     }
 
     @Override
-    public boolean hasValidMove(Board board) {
+    public boolean hasValidMove(ChessRules board) {
         Direction d = color == PieceColor.WHITE ? Direction.U : Direction.D;
         if (board.getPieceColor(new Position(currentPos.x() + d.x, currentPos.y())) == PieceColor.NONE) {
             return true;

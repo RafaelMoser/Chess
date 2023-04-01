@@ -1,9 +1,10 @@
 package Game.Pieces;
 
+import Game.GameRules.ChessRules;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
+import Game.Pieces.PieceInfo.PieceTypeColor;
 import Game.Position;
-import Game.Board;
 
 public abstract class GenericPiece implements Piece {
 
@@ -18,7 +19,7 @@ public abstract class GenericPiece implements Piece {
     }
 
     @Override
-    public boolean isValidMove(Board board, Position to) {
+    public boolean isValidMove(ChessRules board, Position to) {
         return isValidMove(board, to, false);
     }
 
@@ -40,5 +41,10 @@ public abstract class GenericPiece implements Piece {
     @Override
     public PieceColor getColor() {
         return color;
+    }
+
+    @Override
+    public PieceTypeColor getTypeColor() {
+        return new PieceTypeColor(type, color);
     }
 }

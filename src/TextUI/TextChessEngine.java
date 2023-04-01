@@ -1,16 +1,19 @@
 package TextUI;
 
 import Game.*;
+import Game.GameRules.ChessRules;
+import Game.GameRules.BoardFactory;
+import Game.GameRules.ModernChessRules;
 import Game.Pieces.PieceInfo.PieceType;
 
 import java.util.Scanner;
 
 public class TextChessEngine {
 
-    private Board board;
+    private ChessRules board;
 
     public void startGame() {
-        board = new Chessboard(BoardCreator.createDefaultBoard());
+        board = new ModernChessRules(BoardFactory.createDefaultBoard());
         Scanner scanner = new Scanner(System.in);
         String stringInput;
         MoveResult m = MoveResult.GAME_START;
@@ -50,24 +53,13 @@ public class TextChessEngine {
         } else {
             PieceType p;
             switch (splits[0]) {
-                case "queen":
-                case "q":
-                    p = PieceType.QUEEN;
-                    break;
-                case "knight":
-                case "n":
-                    p = PieceType.KNIGHT;
-                    break;
-                case "rook":
-                case "r":
-                    p = PieceType.ROOK;
-                    break;
-                case "bishop":
-                case "b":
-                    p = PieceType.BISHOP;
-                    break;
-                default:
+                case "queen", "q" -> p = PieceType.QUEEN;
+                case "knight", "n" -> p = PieceType.KNIGHT;
+                case "rook", "r" -> p = PieceType.ROOK;
+                case "bishop", "b" -> p = PieceType.BISHOP;
+                default -> {
                     return MoveResult.INVALID_STRING;
+                }
             }
             return board.promote(p);
         }

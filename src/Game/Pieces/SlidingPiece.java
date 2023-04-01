@@ -1,6 +1,6 @@
 package Game.Pieces;
 
-import Game.Board;
+import Game.GameRules.ChessRules;
 import Game.Direction;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class SlidingPiece extends GenericPiece implements Piece {
 
-    private List<Direction> movementDirections;
+    private final List<Direction> movementDirections;
 
     public SlidingPiece(PieceColor color, PieceType type, Position pos, Direction[] directionArray) {
         super(color, type, pos);
@@ -19,7 +19,7 @@ public abstract class SlidingPiece extends GenericPiece implements Piece {
     }
 
     @Override
-    public boolean hasValidMove(Board board) {
+    public boolean hasValidMove(ChessRules board) {
         for (Direction d : movementDirections) {
             if (d == Direction.N) continue;
             Position pos = new Position(currentPos.x() + d.x, currentPos.y() + d.y);
@@ -30,7 +30,7 @@ public abstract class SlidingPiece extends GenericPiece implements Piece {
     }
 
     @Override
-    public boolean isValidMove(Board board, Position to, boolean ignorePieceOnPosTo) {
+    public boolean isValidMove(ChessRules board, Position to, boolean ignorePieceOnPosTo) {
         if (!Direction.isSlidingMove(currentPos, to)) {
             return false;
         }

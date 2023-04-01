@@ -1,21 +1,21 @@
 package Tests;
 
-import Game.Board;
-import Game.Chessboard;
+import Game.GameRules.ChessRules;
+import Game.GameRules.ModernChessRules;
 import Game.MoveResult;
 import Game.Pieces.King;
 import Game.Pieces.Knight;
+import Game.Pieces.Piece;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
 import Game.Pieces.PieceInfo.PieceTypeColor;
-import Game.Pieces.Piece;
 import Game.Pieces.Rook;
 import Game.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KingTest {
     /* Initial board for test:
@@ -36,26 +36,25 @@ public class KingTest {
          */
 
 
-    Board testBoard;
+    ChessRules testBoard;
 
     @BeforeEach
     void setUp() {
-        Map<Position, Piece> board = new HashMap<>();
+        List<Piece> board = new ArrayList<>();
 
-        board.put(new Position(1, 1), new Rook(PieceColor.WHITE, new Position(1, 1)));
-        board.put(new Position(1, 8), new Rook(PieceColor.WHITE, new Position(1, 8)));
+        board.add(new Rook(PieceColor.WHITE, new Position(1, 1)));
+        board.add(new Rook(PieceColor.WHITE, new Position(1, 8)));
 
-        board.put(new Position(8, 1), new Rook(PieceColor.BLACK, new Position(8, 1)));
-        board.put(new Position(8, 8), new Rook(PieceColor.BLACK, new Position(8, 8)));
+        board.add(new Rook(PieceColor.BLACK, new Position(8, 1)));
+        board.add(new Rook(PieceColor.BLACK, new Position(8, 8)));
 
-        board.put(new Position(7, 4), new Knight(PieceColor.WHITE, new Position(7, 4)));
-        board.put(new Position(2, 4), new Knight(PieceColor.BLACK, new Position(2, 4)));
+        board.add(new Knight(PieceColor.WHITE, new Position(7, 4)));
+        board.add(new Knight(PieceColor.BLACK, new Position(2, 4)));
 
+        board.add(new King(PieceColor.WHITE, new Position(1, 5)));
+        board.add(new King(PieceColor.BLACK, new Position(8, 5)));
 
-        board.put(new Position(1, 5), new King(PieceColor.WHITE, new Position(1, 5)));
-        board.put(new Position(8, 5), new King(PieceColor.BLACK, new Position(8, 5)));
-
-        testBoard = new Chessboard(board);
+        testBoard = new ModernChessRules(board);
     }
 
     @Test

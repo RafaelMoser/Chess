@@ -1,16 +1,17 @@
 package Game.Pieces;
 
-import Game.Board;
+import Game.GameRules.ChessRules;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
+import Game.Pieces.PieceInfo.PieceTypeColor;
 import Game.Position;
 
 public interface Piece {
-    boolean isValidMove(Board board, Position to, boolean ignorePieceOnPosTo);
+    boolean isValidMove(ChessRules board, Position to, boolean ignorePieceOnPosTo);
 
-    boolean hasValidMove(Board board);
+    boolean hasValidMove(ChessRules board);
 
-    boolean isValidMove(Board board, Position to);
+    boolean isValidMove(ChessRules board, Position to);
 
     void afterMove(Position to);
 
@@ -19,4 +20,6 @@ public interface Piece {
     PieceType getType();
 
     PieceColor getColor();
+
+    PieceTypeColor getTypeColor();
 }

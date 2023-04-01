@@ -1,20 +1,20 @@
 package Tests;
 
-import Game.Board;
-import Game.Chessboard;
+import Game.GameRules.ChessRules;
+import Game.GameRules.ModernChessRules;
 import Game.MoveResult;
 import Game.Pieces.Bishop;
 import Game.Pieces.King;
+import Game.Pieces.Piece;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
 import Game.Pieces.PieceInfo.PieceTypeColor;
-import Game.Pieces.Piece;
 import Game.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 class BishopTest {
 
@@ -34,29 +34,29 @@ class BishopTest {
     K = kings (not used on test)
      */
 
-    Board testBoard;
+    ChessRules testBoard;
 
     @BeforeEach
     void setUp() {
-        Map<Position, Piece> board = new HashMap<>();
+        List<Piece> board = new ArrayList<>();
 
-        board.put(new Position(6, 1), new Bishop(PieceColor.WHITE, new Position(6, 1)));
-        board.put(new Position(2, 2), new Bishop(PieceColor.WHITE, new Position(2, 2)));
-        board.put(new Position(1, 3), new Bishop(PieceColor.WHITE, new Position(1, 3)));
-        board.put(new Position(6, 5), new Bishop(PieceColor.WHITE, new Position(6, 5)));
-        board.put(new Position(8, 6), new Bishop(PieceColor.WHITE, new Position(8, 6)));
+        board.add(new Bishop(PieceColor.WHITE, new Position(6, 1)));
+        board.add(new Bishop(PieceColor.WHITE, new Position(2, 2)));
+        board.add(new Bishop(PieceColor.WHITE, new Position(1, 3)));
+        board.add(new Bishop(PieceColor.WHITE, new Position(6, 5)));
+        board.add(new Bishop(PieceColor.WHITE, new Position(8, 6)));
 
-        board.put(new Position(3, 1), new Bishop(PieceColor.BLACK, new Position(3, 1)));
-        board.put(new Position(7, 2), new Bishop(PieceColor.BLACK, new Position(7, 2)));
-        board.put(new Position(8, 3), new Bishop(PieceColor.BLACK, new Position(8, 3)));
-        board.put(new Position(3, 5), new Bishop(PieceColor.BLACK, new Position(3, 5)));
-        board.put(new Position(1, 6), new Bishop(PieceColor.BLACK, new Position(2, 6)));
+        board.add(new Bishop(PieceColor.BLACK, new Position(3, 1)));
+        board.add(new Bishop(PieceColor.BLACK, new Position(7, 2)));
+        board.add(new Bishop(PieceColor.BLACK, new Position(8, 3)));
+        board.add(new Bishop(PieceColor.BLACK, new Position(3, 5)));
+        board.add(new Bishop(PieceColor.BLACK, new Position(2, 6)));
 
 
-        board.put(new Position(2, 8), new King(PieceColor.WHITE, new Position(2, 8)));
-        board.put(new Position(7, 8), new King(PieceColor.BLACK, new Position(7, 8)));
+        board.add(new King(PieceColor.WHITE, new Position(2, 8)));
+        board.add(new King(PieceColor.BLACK, new Position(7, 8)));
 
-        testBoard = new Chessboard(board);
+        testBoard = new ModernChessRules(board);
     }
 
 

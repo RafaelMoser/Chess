@@ -1,10 +1,13 @@
-package Game;
+package Game.GameRules;
 
+import Game.Direction;
+import Game.MoveResult;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
 import Game.Pieces.PieceInfo.PieceTypeColor;
+import Game.Position;
 
-public interface Board {
+public interface ChessRules {
     MoveResult move(Position from, Position to);
 
     boolean isInCheck(PieceColor color);
@@ -17,9 +20,9 @@ public interface Board {
 
     PieceType getPieceType(Position pos);
 
-    boolean isInBounds(Position pos);
-
     PieceTypeColor getPieceTypeColor(Position pos);
+
+    boolean isInBounds(Position pos);
 
     boolean isPositionUnderAttack(Position pos, PieceColor color);
 

@@ -1,9 +1,9 @@
 package Game.Pieces;
 
+import Game.GameRules.ChessRules;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
 import Game.Position;
-import Game.Board;
 
 public class Knight extends GenericPiece {
 
@@ -12,7 +12,7 @@ public class Knight extends GenericPiece {
     }
 
     @Override
-    public boolean isValidMove(Board board, Position to, boolean ignorePieceOnPosTo) {
+    public boolean isValidMove(ChessRules board, Position to, boolean ignorePieceOnPosTo) {
         if (currentPos.equals(to)) {
             return false;
         }
@@ -25,7 +25,7 @@ public class Knight extends GenericPiece {
     }
 
     @Override
-    public boolean hasValidMove(Board board) {
+    public boolean hasValidMove(ChessRules board) {
         int[][] moves = {{2, 1}, {2, -1}, {1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {-2, 1}, {-2, -1}};
         for (int[] move : moves) {
             Position pos = new Position(currentPos.x() + move[0], currentPos.y() + move[1]);

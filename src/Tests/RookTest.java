@@ -1,20 +1,20 @@
 package Tests;
 
-import Game.Board;
-import Game.Chessboard;
+import Game.GameRules.ChessRules;
+import Game.GameRules.ModernChessRules;
 import Game.MoveResult;
 import Game.Pieces.King;
+import Game.Pieces.Piece;
 import Game.Pieces.PieceInfo.PieceColor;
 import Game.Pieces.PieceInfo.PieceType;
 import Game.Pieces.PieceInfo.PieceTypeColor;
-import Game.Pieces.Piece;
 import Game.Pieces.Rook;
 import Game.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RookTest {
 
@@ -35,23 +35,22 @@ public class RookTest {
          */
 
 
-    Board testBoard;
+    ChessRules testBoard;
 
     @BeforeEach
     void setUp() {
-        Map<Position, Piece> board = new HashMap<>();
+        List<Piece> board = new ArrayList<>();
 
-        board.put(new Position(1, 1), new Rook(PieceColor.WHITE, new Position(1, 1)));
-        board.put(new Position(2, 3), new Rook(PieceColor.WHITE, new Position(2, 3)));
+        board.add(new Rook(PieceColor.WHITE, new Position(1, 1)));
+        board.add(new Rook(PieceColor.WHITE, new Position(2, 3)));
 
-        board.put(new Position(8, 1), new Rook(PieceColor.BLACK, new Position(8, 1)));
-        board.put(new Position(7, 3), new Rook(PieceColor.BLACK, new Position(7, 3)));
+        board.add(new Rook(PieceColor.BLACK, new Position(8, 1)));
+        board.add(new Rook(PieceColor.BLACK, new Position(7, 3)));
 
+        board.add(new King(PieceColor.WHITE, new Position(3, 8)));
+        board.add(new King(PieceColor.BLACK, new Position(6, 8)));
 
-        board.put(new Position(3, 8), new King(PieceColor.WHITE, new Position(3, 8)));
-        board.put(new Position(6, 8), new King(PieceColor.BLACK, new Position(6, 8)));
-
-        testBoard = new Chessboard(board);
+        testBoard = new ModernChessRules(board);
     }
 
     @Test
